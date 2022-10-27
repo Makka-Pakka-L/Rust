@@ -190,13 +190,13 @@
 		
 		2.String类型
 			let s1 = String::from("hello");
-			let s2 = s1;
+			let s2 = s1;	//s2的prt会指向h1的首地址,也就是把s1的Stack移动到s2的Stack,s1失效*
 			//一个string类型有三部分组成:
 			//							ptr:	 指向存放string内容的内存指针
 			//							len:	 值的长度
 			//							capacity:值的容量(系统分配的内存大小)
 			//
-			//	  S1(Stack)					   S2(Heap)
+			//	  s1(Stack)					   h1(Heap)
 			//	name	value				index	value
 			//	prt		  ---------------->	  0		  h
 			//	len		  5 				  1 	  e
@@ -204,8 +204,33 @@
 			//								  3       l
 			//								  4		  o
 			//
-			///S1存放在Stack上
-			///S2存放在Heap 上
+			///s1存放在Stack上
+			///h1存放在Heap 上
+			
+			解释:为了防止离开作用域时s1和s2都调用 drop()函数来释放内存导致	"二次释放内存"的大BUG,
+					Rust将s1赋值给s2的同时将s1失效也就是弹出栈,来应对BUG
+			
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
