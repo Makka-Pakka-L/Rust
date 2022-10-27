@@ -288,8 +288,58 @@
 
 	
 	(6)所有权和函数
-
-
+		(1)函数
+				例子8:
+						fn main(){
+							let s = String::from("Hello World");
+							
+							take_ownership(s);
+							
+							let x = 5;
+							
+							makes_copy(x);
+							
+							println!("x:{}", x);				
+						}
+						
+						fn take_ownership(some_string: String){
+							println!("{}", some_string)
+						}
+						
+						fn makes_copy(some_number: i32){
+							println("{}", some_number)
+						}
+				
+				输出8:
+						Hello World
+						5
+						5
+				
+				解释:这里第295行的时候 s 被调用,在函数里实际上是被克隆了,所以s的作用域到第296行就结束了
+						x的作用域到main函数结束才被弹栈
+		
+		(2)返回值与作用域
+				例子9:
+						fn main(){
+							let s1 = gives_ownership();
+							
+							let s2 = String::from("hello");
+							
+							let s3 = takes_and_gives_back(s2);
+						}
+						
+						fn gives_ownership() ->String{
+							let some_string = String::from("hello");
+							some_string
+						}
+						
+						fn takes_and_gives_back(a_string: String) -> String{
+							a_string
+						}
+						
+				总结9:
+						
+					
 
 
 
