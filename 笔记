@@ -1,4 +1,4 @@
-											Rust(锈)
+											Rust(锈)[2022.10.27]
 1、运行(文件名为Hello World.rs)
 	fn main(){
 		println!('Hello World');
