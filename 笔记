@@ -344,8 +344,24 @@
 		
 		(3)获得值但是不获得所有权
 				例子10:
+						fn main(){
+							let s1 = String::from("hello");
+							
+							let(s2, len) = calculate_length(s1);
+							
+							println!("The length of '{}' is {}.", s2, len);
+						}
 						
+						fn calculate_length(s: String) -> (String, usize) {
+							let length = s.len();
+							
+							(s, length)
+						}
+				
+				解释: main最后把s1的所有权掌握在 main 里也就是s2,应为返回s2
 
+
+10、引用和借用
 
 
 
