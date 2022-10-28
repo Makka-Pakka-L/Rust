@@ -364,29 +364,45 @@
 10、引用和借用(2022-10-28)
 	符号: ' & '
 	含义:获取值但是不获取所有权
-	例子11:
-			fn main(){
-				let s1 = String::from("Hello");
-				let len = calculate_length(&s1);
-				
-				println!("The length of '{}' is {}.", s1, len);
-			}
-			
-			fn calculate_length(s: &String) -> usize{
-				s.len()
-			}
-	解释:第369行的 '&s1' 的意思是引用s1的值但是不获取所有值,所以 s1 不会失效,s1的作用域还是到377行
-	图解:
-		       s					  s1					   	   h1	
-		  name	  value			name  		value			index	  value	
-		  ptr		---------->	ptr    		-------------->  0  		h
-								len			5			  	 1			e
-								capacity	5				 2			l
-															 3			l
-															 4			o
 	
+	(1)借用
+			例子11:
+					fn main(){
+						let s1 = String::from("Hello");
+						let len = calculate_length(&s1);
+						
+						println!("The length of '{}' is {}.", s1, len);
+					}
+					
+					fn calculate_length(s: &String) -> usize{
+						s.len()
+					}
+			解释11:第369行的 '&s1' 的意思是借用s1的值但是不获取所有值,所以 s1 不会失效,s1的作用域还是到377行
+					借用的值是指向s1的指针,所以值是不能 '修改'* 的
+			图解11:
+					   s					  s1					   	   h1		
+				  name	  value			name  		value			index	  value	
+				  ptr		---------->	ptr    		-------------->  0  		h	
+										len			5			  	 1			e	
+										capacity	5				 2			l	
+																	 3			l	
+																	 4			o		
+	
+	(2)引用
+			例子12:
+					fn main(){
+						let mut s1 = String::from("Hello");
+						let len = calculate_length(&mut s1);
+						
+						println!("The length of '{}' is {}.", s1, len);
+					}
+					
+					fn calculate_length(s: &mut String) -> usize{
+						s.push_str(", world");
+						s.len()
+					}
 
-
+			解释12:+ 'mut' 将变量
 
 
 
