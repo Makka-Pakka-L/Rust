@@ -411,9 +411,27 @@
 						2.至少有一个指针用于写入数据
 						3.没有使用任何机制来同步对数据的访问
 
+11、输入(2022-10-30)
+	说明:需要调用标准库
+	使用"std::io::stdin().read_line(&mut 变量名).exprct("无法读取行");"
+	(1)
+		例子13:
+				use std::io;
+				
+				fn main() {
+					println!("猜数!");
+					
+					println!("猜测一个数");
 
+					let mut guess = String::new();	
+					//定义了一个可变变量 guess 并且等于为String类型,让系统给他分配一定的内存大小
+					io::stdin().read_line(&mut guess).exprct("无法读取行");
+					//或者std::io::stdin().read_line(&mut 变量名).exprct("无法读取行");
+					//调用了内部函数库 stu::io ,也就是调用读取 io口的数据. exprct表示要是报错就输出"无法读取行"
+					println!("你猜测的数是:{} ", guess);
+				}
 
-
+12、类型转换
 
 
 
